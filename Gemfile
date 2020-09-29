@@ -31,6 +31,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # rspec-rails is a testing framework for Rails 5+.
+  gem 'rspec-rails', '~> 4.0.1'
+  # ffaker generates dummy data.
+  gem 'ffaker', '~> 2.17'
+  # factory_bot_rails provides integration between factory_bot and rails 4.2 or newer
+  gem 'factory_bot_rails', '~> 6.1'
 end
 
 group :development do
