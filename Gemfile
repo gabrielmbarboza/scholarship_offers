@@ -47,6 +47,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  # Strategies for cleaning databases using ActiveRecord. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner-active_record', '~> 1.8'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
