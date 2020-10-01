@@ -60,7 +60,8 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    ffaker (2.17.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -164,7 +165,7 @@ DEPENDENCIES
   byebug
   database_cleaner-active_record (~> 1.8)
   factory_bot_rails (~> 6.1)
-  ffaker (~> 2.17)
+  faker (~> 2.14)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
