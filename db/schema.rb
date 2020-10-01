@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_234707) do
+ActiveRecord::Schema.define(version: 2020_10_01_021703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(version: 2020_09_30_234707) do
     t.index ["university_id"], name: "index_courses_on_university_id"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.decimal "full_price", null: false
+    t.decimal "price_with_discount"
+    t.decimal "discount_percentage"
+    t.date "start_date"
+    t.string "enrollment_semester"
+    t.boolean "enabled"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_offers_on_course_id"
+  end
+
   create_table "universities", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "score", precision: 5, scale: 2, default: "0.0"
@@ -45,4 +58,5 @@ ActiveRecord::Schema.define(version: 2020_09_30_234707) do
 
   add_foreign_key "courses", "campuses"
   add_foreign_key "courses", "universities"
+  add_foreign_key "offers", "courses"
 end
