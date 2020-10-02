@@ -11,6 +11,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # A terminal spinner for tasks that have non-deterministic time frame.
 gem 'tty-spinner', '~> 0.9.3'
+# will_paginate is a pagination library that integrates with Ruby on Rails, Sinatra, Hanami::View, Merb, DataMapper and Sequel.
+gem 'will_paginate', '~> 3.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

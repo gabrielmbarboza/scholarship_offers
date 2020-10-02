@@ -3,7 +3,14 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.all
+    @courses = Course.search(
+      kind: params[:kind],
+      level: params[:level],
+      shift: params[:shift],
+      university_name: params[:university_name],
+      page: params[:page],
+      per_page: params[:per_page]
+    )
 
     render json: @courses
   end
