@@ -22,6 +22,53 @@ RSpec.describe "/courses", type: :request do
       get courses_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
+
+    context "with search params" do
+      it "search by university name" do
+        course1 = create(:course)
+        get courses_url, params: { university_name: course1.university.name }
+        
+        course_response = JSON.parse(response.body).first
+        
+        expect(course_response["id"]).to eq(course1.id)
+      end
+
+      it "search by course name" do
+        course1 = create(:course)
+        get courses_url, params: { name: course1.name }
+        
+        course_response = JSON.parse(response.body).first
+        
+        expect(course_response["id"]).to eq(course1.id)
+      end
+
+      it "search by course kind" do
+        course1 = create(:course)
+        get courses_url, params: { kind: course1.kind }
+        
+        course_response = JSON.parse(response.body).first
+        
+        expect(course_response["id"]).to eq(course1.id)
+      end
+
+      it "search by course level" do
+        course1 = create(:course)
+        get courses_url, params: { level: course1.level }
+        
+        course_response = JSON.parse(response.body).first
+        
+        expect(course_response["id"]).to eq(course1.id)
+      end
+
+      it "search by course shift" do
+        course1 = create(:course)
+        get courses_url, params: { shift: course1.shift }
+        
+        course_response = JSON.parse(response.body).first
+        
+        expect(course_response["id"]).to eq(course1.id)
+      end
+    end
   end
 
   describe "GET /show" do

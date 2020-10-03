@@ -29,7 +29,7 @@ class Course < ApplicationRecord
   }
 
   scope :with_university_name, -> (university_name) {
-    joins(:university).where(universities: { name: university_name }) if university_name.present?
+    includes(:university).where(universities: { name: university_name }) if university_name.present?
   }
 
   scope :with_paginate, -> (page, per_page) {

@@ -36,4 +36,26 @@ RSpec.describe Course, type: :model do
     course2 = build(:course, campus: nil)
     expect(course2).to_not be_valid
   end
+
+  context "Uses the search method" do
+    it "Should be return course by university name" do
+      course = Course.search(university_name: course1.university.name).first
+      expect(course.id).to eq(course1.id)
+    end
+
+    it "Should be return course by course kind" do
+      course = Course.search(kind: course1.kind).first
+      expect(course.id).to eq(course1.id)
+    end
+
+    it "Should be return course by course level" do
+      course = Course.search(level: course1.level).first
+      expect(course.id).to eq(course1.id)
+    end
+
+    it "Should be return course by course shift" do
+      course = Course.search(shift: course1.shift).first
+      expect(course.id).to eq(course1.id)
+    end
+  end
 end
