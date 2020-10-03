@@ -31,4 +31,52 @@ RSpec.describe Offer, type: :model do
     offer2 = build(:offer, course: nil)
     expect(offer2).to_not be_valid
   end
+
+  context "Uses the search method" do
+    it "Should be return offer by university name" do
+      offer = Offer.search(university_name: offer1.course.university.name).first
+      expect(offer.id).to eq(offer1.id)
+    end
+
+    it "Should be return offer by campus city" do
+      offer = Offer.search(campus_city: offer1.course.campus.city).first
+      expect(offer.id).to eq(offer1.id)
+    end
+
+    it "Should be return offer by course name" do
+      offer = Offer.search(course_name: offer1.course.name).first
+      expect(offer.id).to eq(offer1.id)
+    end
+
+    it "Should be return offer by course kind" do
+      offer = Offer.search(course_kind: offer1.course.kind).first
+      expect(offer.id).to eq(offer1.id)
+    end
+
+    it "Should be return offer by course level" do
+      offer = Offer.search(course_level: offer1.course.level).first
+      expect(offer.id).to eq(offer1.id)
+    end
+
+    it "Should be return offer by course shift" do
+      offer = Offer.search(course_shift: offer1.course.shift).first
+      expect(offer.id).to eq(offer1.id)
+    end
+
+    it "Should sort offer by price_with_discount ordered by ASC" do
+      create_list(:offer, 3)
+      offers1 = Offer.search(sort_by: "price_with_discount", order_by: "asc")
+
+      expect(offers1.first.price_with_discount).to be < offers1.second.price_with_discount
+      expect(offers1.second.price_with_discount).to be < offers1.third.price_with_discount
+    end
+
+    it "Should sort offer by price_with_discount ordered by DESC" do
+      create_list(:offer, 3)
+      offers2 = Offer.search(sort_by: "price_with_discount", order_by: "desc")
+
+      expect(offers2.first.price_with_discount).to be > offers2.second.price_with_discount
+      expect(offers2.second.price_with_discount).to be > offers2.third.price_with_discount
+    end
+  end
 end

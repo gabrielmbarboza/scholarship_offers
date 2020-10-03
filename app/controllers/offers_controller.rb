@@ -3,7 +3,18 @@ class OffersController < ApplicationController
 
   # GET /offers
   def index
-    @offers = Offer.all
+    @offers = Offer.search(
+      university_name: params[:university_name],
+      course_name: params[:course_name],
+      campus_city: params[:campus_city],
+      course_kind: params[:course_kind],
+      course_level: params[:course_level],
+      course_shift: params[:course_shift],
+      sort_by: params[:sort_by],
+      order_by: params[:order_by],
+      page: params[:page],
+      per_page: params[:per_page]
+    )
 
     render json: @offers
   end
@@ -46,6 +57,7 @@ class OffersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def offer_params
-      params.require(:offer).permit(:full_price, :price_with_discount, :discount_percentage, :start_date, :enrollment_semester, :enabled, :course_id)
+      params.require(:offer).permit(:full_price, :price_with_discount, :discount_percentage, 
+        :start_date, :enrollment_semester, :enabled, :course_id)
     end
 end

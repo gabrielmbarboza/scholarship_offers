@@ -25,6 +25,86 @@ RSpec.describe "/offers", type: :request do
       get offers_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
+
+    context "with search params" do
+      it "search by university name" do
+        offer1 = create(:offer)
+        get offers_url, params: { university_name: offer1.course.university.name }
+        
+        offer_response = JSON.parse(response.body).first
+        
+        expect(offer_response["id"]).to eq(offer1.id)
+      end
+
+      it "search by campus city" do
+        offer1 = create(:offer)
+        get offers_url, params: { campus_city: offer1.course.campus.city }
+        
+        offer_response = JSON.parse(response.body).first
+        
+        expect(offer_response["id"]).to eq(offer1.id)
+      end
+    
+      it "search by course name" do
+        offer1 = create(:offer)
+        get offers_url, params: { course_name: offer1.course.name }
+        
+        offer_response = JSON.parse(response.body).first
+        
+        expect(offer_response["id"]).to eq(offer1.id)
+      end
+
+      it "search by course kind" do
+        offer1 = create(:offer)
+        get offers_url, params: { course_kind: offer1.course.kind }
+        
+        offer_response = JSON.parse(response.body).first
+        
+        expect(offer_response["id"]).to eq(offer1.id)
+      end
+
+      it "search by course level" do
+        offer1 = create(:offer)
+        get offers_url, params: { course_level: offer1.course.level }
+        
+        offer_response = JSON.parse(response.body).first
+        
+        expect(offer_response["id"]).to eq(offer1.id)
+      end
+
+      it "search by course shift" do
+        offer1 = create(:offer)
+        get offers_url, params: { course_shift: offer1.course.shift }
+        
+        offer_response = JSON.parse(response.body).first
+        
+        expect(offer_response["id"]).to eq(offer1.id)
+      end
+    end
+
+    context "returns offers sorted by price_with_discount" do
+      it "with ASC order" do
+        create_list(:offer, 3)
+
+        get offers_url, params: { sort_by: "price_with_discount", order_by: "ASC" }
+
+        offers = JSON.parse(response.body)
+
+        expect(offers.first["price_with_discount"]).to be < offers.second["price_with_discount"]
+        expect(offers.second["price_with_discount"]).to be < offers.third["price_with_discount"]
+      end
+
+      it "with DESC order" do
+        create_list(:offer, 3)
+
+        get offers_url, params: { sort_by: "price_with_discount", order_by: "DESC" }
+
+        offers = JSON.parse(response.body)
+
+        expect(offers.first["price_with_discount"]).to be > offers.second["price_with_discount"]
+        expect(offers.second["price_with_discount"]).to be > offers.third["price_with_discount"]
+      end
+    end
   end
 
   describe "GET /show" do
@@ -82,9 +162,9 @@ RSpec.describe "/offers", type: :request do
         patch offer_url(offer),
               params: { offer: new_attributes }, headers: valid_headers, as: :json
         offer.reload
-        expect(offer.full_price).to eq(new_attributes[:full_price])
-        expect(offer.price_with_discount).to eq(new_attributes[:price_with_discount])
-        expect(offer.discount_percentage).to eq(new_attributes[:discount_percentage])
+        expect(offer.full_price).to be == (new_attributes[:full_price]).to_f
+        expect(offer.price_with_discount).to be == (new_attributes[:price_with_discount]).to_f
+        expect(offer.discount_percentage).to be == (new_attributes[:discount_percentage]).to_f
         expect(offer.enrollment_semester).to eq(new_attributes[:enrollment_semester])
         expect(offer.start_date).to eq(new_attributes[:start_date])
         expect(offer.enabled).to eq(new_attributes[:enabled])
