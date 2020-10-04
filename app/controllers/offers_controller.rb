@@ -15,8 +15,6 @@ class OffersController < ApplicationController
       page: params[:page],
       per_page: params[:per_page]
     )
-
-    render json: @offers
   end
 
   # GET /offers/1
