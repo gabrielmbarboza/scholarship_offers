@@ -11,8 +11,6 @@ class CoursesController < ApplicationController
       page: params[:page],
       per_page: params[:per_page]
     )
-
-    render json: @courses
   end
 
   # GET /courses/1
