@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
       page: params[:page],
       per_page: params[:per_page]
     )
+    render 'courses/index.json.jbuilder'
   end
 
   # GET /courses/1
