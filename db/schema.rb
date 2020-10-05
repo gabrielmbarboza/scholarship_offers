@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 2020_10_01_021703) do
   end
 
   create_table "offers", force: :cascade do |t|
-    t.decimal "full_price", null: false
-    t.decimal "price_with_discount"
-    t.decimal "discount_percentage"
+    t.decimal "full_price", precision: 5, scale: 2, default: "0.0", null: false
+    t.decimal "price_with_discount", precision: 5, scale: 2, default: "0.0"
+    t.decimal "discount_percentage", precision: 5, scale: 2, default: "0.0"
     t.date "start_date"
     t.string "enrollment_semester"
     t.boolean "enabled"

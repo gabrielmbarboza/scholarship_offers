@@ -30,10 +30,18 @@ RSpec.describe "/offers", type: :request do
       it "search by university name" do
         offer1 = create(:offer)
         get offers_url, params: { university_name: offer1.course.university.name }
-        
+       
         offer_response = JSON.parse(response.body).first
-        
-        expect(offer_response["id"]).to eq(offer1.id)
+
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
+        expect((offer_response["price_with_discount"]).to_f).to eq(offer1.price_with_discount.to_f)
+        expect((offer_response["discount_percentage"]).to_f).to eq(offer1.discount_percentage.to_f)
+        expect(offer_response["start_date"]).to eq(offer1.start_date.strftime("%d/%m/%Y"))
+        expect(offer_response["enrollment_semester"]).to eq(offer1.enrollment_semester)
+        expect(offer_response["enabled"]).to eq(offer1.enabled)
+        expect(offer_response["course"]["name"]).to eq(offer1.course.name)
+        expect(offer_response["university"]["name"]).to eq(offer1.course.university.name)
+        expect(offer_response["campus"]["city"]).to eq(offer1.course.campus.city)
       end
 
       it "search by campus city" do
@@ -42,7 +50,15 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
+        expect((offer_response["price_with_discount"]).to_f).to eq(offer1.price_with_discount.to_f)
+        expect((offer_response["discount_percentage"]).to_f).to eq(offer1.discount_percentage.to_f)
+        expect(offer_response["start_date"]).to eq(offer1.start_date.strftime("%d/%m/%Y"))
+        expect(offer_response["enrollment_semester"]).to eq(offer1.enrollment_semester)
+        expect(offer_response["enabled"]).to eq(offer1.enabled)
+        expect(offer_response["course"]["name"]).to eq(offer1.course.name)
+        expect(offer_response["university"]["name"]).to eq(offer1.course.university.name)
+        expect(offer_response["campus"]["city"]).to eq(offer1.course.campus.city)
       end
     
       it "search by course name" do
@@ -51,7 +67,15 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
+        expect((offer_response["price_with_discount"]).to_f).to eq(offer1.price_with_discount.to_f)
+        expect((offer_response["discount_percentage"]).to_f).to eq(offer1.discount_percentage.to_f)
+        expect(offer_response["start_date"]).to eq(offer1.start_date.strftime("%d/%m/%Y"))
+        expect(offer_response["enrollment_semester"]).to eq(offer1.enrollment_semester)
+        expect(offer_response["enabled"]).to eq(offer1.enabled)
+        expect(offer_response["course"]["name"]).to eq(offer1.course.name)
+        expect(offer_response["university"]["name"]).to eq(offer1.course.university.name)
+        expect(offer_response["campus"]["city"]).to eq(offer1.course.campus.city)
       end
 
       it "search by course kind" do
@@ -60,7 +84,15 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
+        expect((offer_response["price_with_discount"]).to_f).to eq(offer1.price_with_discount.to_f)
+        expect((offer_response["discount_percentage"]).to_f).to eq(offer1.discount_percentage.to_f)
+        expect(offer_response["start_date"]).to eq(offer1.start_date.strftime("%d/%m/%Y"))
+        expect(offer_response["enrollment_semester"]).to eq(offer1.enrollment_semester)
+        expect(offer_response["enabled"]).to eq(offer1.enabled)
+        expect(offer_response["course"]["name"]).to eq(offer1.course.name)
+        expect(offer_response["university"]["name"]).to eq(offer1.course.university.name)
+        expect(offer_response["campus"]["city"]).to eq(offer1.course.campus.city)
       end
 
       it "search by course level" do
@@ -69,7 +101,15 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
+        expect((offer_response["price_with_discount"]).to_f).to eq(offer1.price_with_discount.to_f)
+        expect((offer_response["discount_percentage"]).to_f).to eq(offer1.discount_percentage.to_f)
+        expect(offer_response["start_date"]).to eq(offer1.start_date.strftime("%d/%m/%Y"))
+        expect(offer_response["enrollment_semester"]).to eq(offer1.enrollment_semester)
+        expect(offer_response["enabled"]).to eq(offer1.enabled)
+        expect(offer_response["course"]["name"]).to eq(offer1.course.name)
+        expect(offer_response["university"]["name"]).to eq(offer1.course.university.name)
+        expect(offer_response["campus"]["city"]).to eq(offer1.course.campus.city)
       end
 
       it "search by course shift" do
@@ -78,7 +118,15 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
+        expect((offer_response["price_with_discount"]).to_f).to eq(offer1.price_with_discount.to_f)
+        expect((offer_response["discount_percentage"]).to_f).to eq(offer1.discount_percentage.to_f)
+        expect(offer_response["start_date"]).to eq(offer1.start_date.strftime("%d/%m/%Y"))
+        expect(offer_response["enrollment_semester"]).to eq(offer1.enrollment_semester)
+        expect(offer_response["enabled"]).to eq(offer1.enabled)
+        expect(offer_response["course"]["name"]).to eq(offer1.course.name)
+        expect(offer_response["university"]["name"]).to eq(offer1.course.university.name)
+        expect(offer_response["campus"]["city"]).to eq(offer1.course.campus.city)
       end
     end
 

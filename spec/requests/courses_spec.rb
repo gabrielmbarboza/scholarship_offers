@@ -30,7 +30,12 @@ RSpec.describe "/courses", type: :request do
         
         course_response = JSON.parse(response.body).first
         
-        expect(course_response["id"]).to eq(course1.id)
+        expect(course1.name).to eq(course_response["name"])
+        expect(course1.kind).to eq(course_response["kind"])
+        expect(course1.level).to eq(course_response["level"])
+        expect(course1.shift).to eq(course_response["shift"])
+        expect(course1.university.name).to eq(course_response["university"]["name"])
+        expect(course1.campus.name).to eq(course_response["campus"]["name"])
       end
 
       it "search by course name" do
@@ -39,7 +44,12 @@ RSpec.describe "/courses", type: :request do
         
         course_response = JSON.parse(response.body).first
         
-        expect(course_response["id"]).to eq(course1.id)
+        expect(course1.name).to eq(course_response["name"])
+        expect(course1.kind).to eq(course_response["kind"])
+        expect(course1.level).to eq(course_response["level"])
+        expect(course1.shift).to eq(course_response["shift"])
+        expect(course1.university.name).to eq(course_response["university"]["name"])
+        expect(course1.campus.name).to eq(course_response["campus"]["name"])
       end
 
       it "search by course kind" do
@@ -48,7 +58,12 @@ RSpec.describe "/courses", type: :request do
         
         course_response = JSON.parse(response.body).first
         
-        expect(course_response["id"]).to eq(course1.id)
+        expect(course1.name).to eq(course_response["name"])
+        expect(course1.kind).to eq(course_response["kind"])
+        expect(course1.level).to eq(course_response["level"])
+        expect(course1.shift).to eq(course_response["shift"])
+        expect(course1.university.name).to eq(course_response["university"]["name"])
+        expect(course1.campus.name).to eq(course_response["campus"]["name"])
       end
 
       it "search by course level" do
@@ -57,7 +72,12 @@ RSpec.describe "/courses", type: :request do
         
         course_response = JSON.parse(response.body).first
         
-        expect(course_response["id"]).to eq(course1.id)
+        expect(course1.name).to eq(course_response["name"])
+        expect(course1.kind).to eq(course_response["kind"])
+        expect(course1.level).to eq(course_response["level"])
+        expect(course1.shift).to eq(course_response["shift"])
+        expect(course1.university.name).to eq(course_response["university"]["name"])
+        expect(course1.campus.name).to eq(course_response["campus"]["name"])
       end
 
       it "search by course shift" do
@@ -66,7 +86,12 @@ RSpec.describe "/courses", type: :request do
         
         course_response = JSON.parse(response.body).first
         
-        expect(course_response["id"]).to eq(course1.id)
+        expect(course1.name).to eq(course_response["name"])
+        expect(course1.kind).to eq(course_response["kind"])
+        expect(course1.level).to eq(course_response["level"])
+        expect(course1.shift).to eq(course_response["shift"])
+        expect(course1.university.name).to eq(course_response["university"]["name"])
+        expect(course1.campus.name).to eq(course_response["campus"]["name"])
       end
     end
   end
