@@ -16,12 +16,16 @@ class OffersController < ApplicationController
       per_page: params[:per_page]
     )
     
-    render 'offers/index.json.jbuilder'
+    if(stale?(etag: @offers))
+      render 'offers/index.json.jbuilder'
+    end
   end
 
   # GET /offers/1
   def show
-    render json: @offer
+    if(stale?(etag: @offer))
+      render 'offers/show.json.jbuilder'
+    end
   end
 
   # POST /offers

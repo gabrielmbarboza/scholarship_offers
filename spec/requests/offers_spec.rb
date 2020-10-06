@@ -33,7 +33,7 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
       end
 
       it "search by campus city" do
@@ -42,7 +42,7 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
       end
     
       it "search by course name" do
@@ -51,7 +51,7 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
       end
 
       it "search by course kind" do
@@ -60,7 +60,7 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
       end
 
       it "search by course level" do
@@ -69,7 +69,7 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
       end
 
       it "search by course shift" do
@@ -78,7 +78,7 @@ RSpec.describe "/offers", type: :request do
         
         offer_response = JSON.parse(response.body).first
         
-        expect(offer_response["id"]).to eq(offer1.id)
+        expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
       end
     end
 
@@ -162,9 +162,9 @@ RSpec.describe "/offers", type: :request do
         patch offer_url(offer),
               params: { offer: new_attributes }, headers: valid_headers, as: :json
         offer.reload
-        expect(offer.full_price).to be == (new_attributes[:full_price]).to_f
-        expect(offer.price_with_discount).to be == (new_attributes[:price_with_discount]).to_f
-        expect(offer.discount_percentage).to be == (new_attributes[:discount_percentage]).to_f
+        expect((offer.full_price).to_f).to be == (new_attributes[:full_price]).to_f
+        expect((offer.price_with_discount).to_f).to be == (new_attributes[:price_with_discount]).to_f
+        expect((offer.discount_percentage).to_f).to be == (new_attributes[:discount_percentage]).to_f
         expect(offer.enrollment_semester).to eq(new_attributes[:enrollment_semester])
         expect(offer.start_date).to eq(new_attributes[:start_date])
         expect(offer.enabled).to eq(new_attributes[:enabled])

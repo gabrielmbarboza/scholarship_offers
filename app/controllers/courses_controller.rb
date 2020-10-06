@@ -11,12 +11,16 @@ class CoursesController < ApplicationController
       page: params[:page],
       per_page: params[:per_page]
     )
-    render 'courses/index.json.jbuilder'
+    if stale?(etag: @courses)
+      render 'courses/index.json.jbuilder'
+    end
   end
 
   # GET /courses/1
   def show
-    render json: @course
+    if stale?(etag: @course)
+      render 'courses/show.json.jbuilder'
+    end
   end
 
   # POST /courses
