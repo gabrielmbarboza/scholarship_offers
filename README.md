@@ -13,7 +13,7 @@ Você pode buscar escolas e cursos de graduação, pós-graduação, idiomas e t
 Construindo a image do projeto com o comando build:  
 `docker-compose build scholarship_offers`
 
-Configurando o banco de dados:
+Configurando o banco de dados (O comando abaixo irá apaga o banco de dados atual):  
 `docker-compose run --rm scholarship_offers rails db:dev:populate`
 
 A partir da versão 5.2 do Rails, foi introduzido a ferramenta [Credentials](https://edgeguides.rubyonrails.org/security.html#environmental-security). Para gerar a SECRET_BASE_KEY, é necessário executar o seguinte comando:  
@@ -24,6 +24,8 @@ Execute o comando up para subir a aplicação:
 
 ![](https://memegenerator.net/img/instances/82338138.jpg)
 
+## Realizando o login
+
 Para acesso de recursos do Scholarship Offers usa como autenticação o padrão JWT. Para tal é necessário efetuar o login, enviando no corpo da requisição em formato JSON email e senha. Será retornado um header Authorization contendo o token no formato JWT na request.
 
 | Parametro | Descrição                                 |
@@ -31,18 +33,18 @@ Para acesso de recursos do Scholarship Offers usa como autenticação o padrão 
 | email     | O email cadastrado (user@scholarship.com) |
 | password  | A senha cadastrada (123456)               |
 
-## Realizando o login
-
 #### Exemplo:
 
 `/login`
+
+## Realizando buscas
 
 ### Cursos
 
 | Parametro | Descrição                                                       |
 | --------- | --------------------------------------------------------------- |
 | name      | Nome do curso                                                   |
-| kind      | Tipo do curso (Presencial/EaD                                   |
+| kind      | Tipo do curso (Presencial/EaD )                                 |
 | level     | Tipo da graduação. Ex: Bacharelado                              |
 | shift     | Período escolar. (Matutino/Vespertino/Nortuno/Integral/Virtual) |
 
