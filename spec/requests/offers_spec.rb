@@ -30,7 +30,7 @@ RSpec.describe "/offers", type: :request do
       it "search by university name" do
         offer1 = create(:offer)
         get offers_url, params: { university_name: offer1.course.university.name }
-        
+       
         offer_response = JSON.parse(response.body).first
         
         expect((offer_response["full_price"]).to_f).to eq(offer1.full_price.to_f)
