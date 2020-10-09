@@ -19,7 +19,7 @@ Configurando o banco de dados:
 A partir da versão 5.2 do Rails, foi introduzido a ferramenta [Credentials](https://edgeguides.rubyonrails.org/security.html#environmental-security). Para gerar a SECRET_BASE_KEY, é necessário executar o seguinte comando:  
 `docker-compose run --rm -e EDITOR=vim id-service bin/rails credentials:edit`
 
-Executw o comando up para subir a aplicação:  
+Execute o comando up para subir a aplicação:  
 `docker-compose up scholarship_offers`
 
 ![](https://memegenerator.net/img/instances/82338138.jpg)
@@ -31,7 +31,7 @@ Para acesso de recursos do Scholarship Offers usa como autenticação o padrão 
 | email     | O email cadastrado (user@scholarship.com) |
 | password  | A senha cadastrada (123456)               |
 
-##Realizando a busca de cursos ou ofertas
+## Realizando o login
 
 #### Exemplo:
 
