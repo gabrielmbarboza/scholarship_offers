@@ -8,7 +8,7 @@ namespace :dev do
         show_spinner("Dropping Database...", "Mission is completed!") { %x[rails db:drop] }
         show_spinner("Creating Database...", "Mission is completed!") { %x[rails db:create] }
         show_spinner("Executing Migrations...", "Mission is completed!") { %x[rails db:migrate] }
-
+        show_spinner("Executing Seeds...", "Mission is completed!") { %x[rails db:seed] }
         show_spinner("Populing Database...", "Mission is completed!") { FactoryBot.create_list(:offer, 60) }
       end
     end
