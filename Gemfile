@@ -15,6 +15,10 @@ gem 'tty-spinner', '~> 0.9.3'
 gem 'will_paginate', '~> 3.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+#Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.7', '>= 4.7.3'
+#JWT authentication for devise with configurable token revocation strategies
+gem 'devise-jwt', '~> 0.8.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -30,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

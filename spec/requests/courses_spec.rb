@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'devise/jwt/test_helpers'
 
 RSpec.describe "/courses", type: :request do
   let(:university) { create(:university) }
@@ -13,7 +14,9 @@ RSpec.describe "/courses", type: :request do
   }
 
   let(:valid_headers) {
-    {}
+    user = create(:user)
+    headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    Devise::JWT::TestHelpers.auth_headers(headers, user)
   }
 
   describe "GET /index" do
@@ -26,7 +29,7 @@ RSpec.describe "/courses", type: :request do
     context "with search params" do
       it "search by university name" do
         course1 = create(:course)
-        get courses_url, params: { university_name: course1.university.name }
+        get courses_url, params: { university_name: course1.university.name }, headers: valid_headers
         
         course_response = JSON.parse(response.body).first
         
@@ -35,7 +38,7 @@ RSpec.describe "/courses", type: :request do
 
       it "search by course name" do
         course1 = create(:course)
-        get courses_url, params: { name: course1.name }
+        get courses_url, params: { name: course1.name }, headers: valid_headers
         
         course_response = JSON.parse(response.body).first
         
@@ -44,7 +47,7 @@ RSpec.describe "/courses", type: :request do
 
       it "search by course kind" do
         course1 = create(:course)
-        get courses_url, params: { kind: course1.kind }
+        get courses_url, params: { kind: course1.kind }, headers: valid_headers
         
         course_response = JSON.parse(response.body).first
         
@@ -53,7 +56,7 @@ RSpec.describe "/courses", type: :request do
 
       it "search by course level" do
         course1 = create(:course)
-        get courses_url, params: { level: course1.level }
+        get courses_url, params: { level: course1.level }, headers: valid_headers
         
         course_response = JSON.parse(response.body).first
         
@@ -62,7 +65,7 @@ RSpec.describe "/courses", type: :request do
 
       it "search by course shift" do
         course1 = create(:course)
-        get courses_url, params: { shift: course1.shift }
+        get courses_url, params: { shift: course1.shift }, headers: valid_headers
         
         course_response = JSON.parse(response.body).first
         
@@ -74,7 +77,7 @@ RSpec.describe "/courses", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       course = Course.create! valid_attributes
-      get course_url(course), as: :json
+      get course_url(course), as: :json, headers: valid_headers
       expect(response).to be_successful
     end
   end

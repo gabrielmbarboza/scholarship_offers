@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'devise/jwt/test_helpers'
 
 RSpec.describe "/campuses", type: :request do
   let(:valid_attributes) {
@@ -14,7 +15,9 @@ RSpec.describe "/campuses", type: :request do
   # CampusesController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
-    {}
+    user = create(:user)
+    headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    Devise::JWT::TestHelpers.auth_headers(headers, user)
   }
 
   describe "GET /index" do
@@ -28,7 +31,7 @@ RSpec.describe "/campuses", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       campus = Campus.create! valid_attributes
-      get campus_url(campus), as: :json
+      get campus_url(campus), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end

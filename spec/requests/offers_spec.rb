@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'devise/jwt/test_helpers'
 
 RSpec.describe "/offers", type: :request do
   let(:course) { create(:course) }
@@ -16,7 +17,9 @@ RSpec.describe "/offers", type: :request do
   # OffersController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
-    {}
+    user = create(:user)
+    headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+    Devise::JWT::TestHelpers.auth_headers(headers, user)
   }
 
   describe "GET /index" do
@@ -29,7 +32,7 @@ RSpec.describe "/offers", type: :request do
     context "with search params" do
       it "search by university name" do
         offer1 = create(:offer)
-        get offers_url, params: { university_name: offer1.course.university.name }
+        get offers_url, params: { university_name: offer1.course.university.name }, headers: valid_headers
        
         offer_response = JSON.parse(response.body).first
         
@@ -38,7 +41,7 @@ RSpec.describe "/offers", type: :request do
 
       it "search by campus city" do
         offer1 = create(:offer)
-        get offers_url, params: { campus_city: offer1.course.campus.city }
+        get offers_url, params: { campus_city: offer1.course.campus.city }, headers: valid_headers
         
         offer_response = JSON.parse(response.body).first
         
@@ -47,7 +50,7 @@ RSpec.describe "/offers", type: :request do
     
       it "search by course name" do
         offer1 = create(:offer)
-        get offers_url, params: { course_name: offer1.course.name }
+        get offers_url, params: { course_name: offer1.course.name }, headers: valid_headers
         
         offer_response = JSON.parse(response.body).first
         
@@ -56,7 +59,7 @@ RSpec.describe "/offers", type: :request do
 
       it "search by course kind" do
         offer1 = create(:offer)
-        get offers_url, params: { course_kind: offer1.course.kind }
+        get offers_url, params: { course_kind: offer1.course.kind }, headers: valid_headers
         
         offer_response = JSON.parse(response.body).first
         
@@ -65,7 +68,7 @@ RSpec.describe "/offers", type: :request do
 
       it "search by course level" do
         offer1 = create(:offer)
-        get offers_url, params: { course_level: offer1.course.level }
+        get offers_url, params: { course_level: offer1.course.level }, headers: valid_headers
         
         offer_response = JSON.parse(response.body).first
         
@@ -74,7 +77,7 @@ RSpec.describe "/offers", type: :request do
 
       it "search by course shift" do
         offer1 = create(:offer)
-        get offers_url, params: { course_shift: offer1.course.shift }
+        get offers_url, params: { course_shift: offer1.course.shift }, headers: valid_headers
         
         offer_response = JSON.parse(response.body).first
         
@@ -86,7 +89,7 @@ RSpec.describe "/offers", type: :request do
       it "with ASC order" do
         create_list(:offer, 3)
 
-        get offers_url, params: { sort_by: "price_with_discount", order_by: "ASC" }
+        get offers_url, params: { sort_by: "price_with_discount", order_by: "ASC" }, headers: valid_headers
 
         offers = JSON.parse(response.body)
 
@@ -97,7 +100,7 @@ RSpec.describe "/offers", type: :request do
       it "with DESC order" do
         create_list(:offer, 3)
 
-        get offers_url, params: { sort_by: "price_with_discount", order_by: "DESC" }
+        get offers_url, params: { sort_by: "price_with_discount", order_by: "DESC" }, headers: valid_headers
 
         offers = JSON.parse(response.body)
 
@@ -110,7 +113,7 @@ RSpec.describe "/offers", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       offer = Offer.create! valid_attributes
-      get offer_url(offer), as: :json
+      get offer_url(offer), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
