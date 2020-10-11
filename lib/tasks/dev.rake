@@ -1,4 +1,8 @@
-require 'factory_bot'
+begin
+  require 'factory_bot'
+rescue LoadError => e
+  raise e unless ENV['RAILS_ENV'] == "production"
+end
 
 namespace :dev do
   namespace :db do
