@@ -6,6 +6,10 @@ O Scholarship Offers reúne bolsas de estudo em mais de 6.000 parceiros entre fa
 
 Você pode buscar escolas e cursos de graduação, pós-graduação, idiomas e técnico em qualquer região, pesquisar e comparar os preços das mensalidades, ver informações sobre as instituições e ainda garantir uma bolsa de estudo sem burocracia.
 
+## Modelo  
+
+![](https://i.ibb.co/1Tz2wKP/scholarship-offers.png)
+
 ## Instalação
 
 **Usando Docker & docker-compose**
@@ -26,7 +30,7 @@ Execute o comando up para subir a aplicação:
 
 ## Realizando o login
 
-Para acesso de recursos do Scholarship Offers usa como autenticação o padrão JWT. Para tal é necessário efetuar o login, enviando no corpo da requisição em formato JSON email e senha. Será retornado um header Authorization contendo o token no formato JWT na request.
+Para acesso de recursos do Scholarship Offers usa como autenticação o padrão JWT. Para tal é necessário efetuar o login enviando no corpo da requisição em formato JSON email e senha. Será retornado um header Authorization contendo o token no formato JWT na request.
 
 | Parametro | Descrição                                 |
 | --------- | ----------------------------------------- |
