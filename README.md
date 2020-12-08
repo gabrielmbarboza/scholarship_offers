@@ -21,7 +21,7 @@ Configurando o banco de dados (O comando abaixo irá apaga o banco de dados atua
 `docker-compose run --rm scholarship_offers rails db:dev:populate`
 
 A partir da versão 5.2 do Rails, foi introduzido a ferramenta [Credentials](https://edgeguides.rubyonrails.org/security.html#environmental-security). Para gerar a SECRET_BASE_KEY, é necessário executar o seguinte comando:  
-`docker-compose run --rm -e EDITOR=vim id-service bin/rails credentials:edit`
+`docker-compose run --rm -e EDITOR=vim scholarship_offers bin/rails credentials:edit`
 
 Execute o comando up para subir a aplicação:  
 `docker-compose up scholarship_offers`
